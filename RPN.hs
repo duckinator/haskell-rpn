@@ -19,6 +19,11 @@ solveRPN' (x:y:z:[]) = [solveRPNStatement (x, y, z)]
 solveRPN' (x:y:z:xs) = [solveRPNStatement (x, y, z)] ++ (solveRPN' xs)
 solveRPN' (xs:[])    = [xs]
 
+-- At the moment, these return "<left> <operator> <right>"
+-- They should eventually return the result.
+-- Example:
+--          now:      ("1", "2", "+") -> "1 + 2"
+--          expected: ("1", "2", "+") -> "3"
 solveRPNStatement :: (String, String, String) -> String
 solveRPNStatement (left, right, "+") = left ++ " + " ++ right
 solveRPNStatement (left, right, "-") = left ++ " - " ++ right
