@@ -29,6 +29,8 @@ solveRPNStatement (left, right, "+") = left ++ " + " ++ right
 solveRPNStatement (left, right, "-") = left ++ " - " ++ right
 solveRPNStatement (left, right, "*") = left ++ " * " ++ right
 solveRPNStatement (left, right, "/") = left ++ " / " ++ right
-solveRPNStatement (left, right, op)  = left ++ " " ++ op ++ "-unknown " ++ right
+solveRPNStatement (left, right, op)  = error ("Unknown operator: " ++ op)
 
-main = print $ solveRPN "1 2 + 3 -"
+main = do
+          print $ solveRPN "1 2 + 3 -"
+          print $ solveRPN "1 2 x"
