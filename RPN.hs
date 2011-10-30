@@ -25,10 +25,10 @@ solveRPN' (xs:[])    = [xs]
 --          now:      ("1", "2", "+") -> "1 + 2"
 --          expected: ("1", "2", "+") -> "3"
 solveRPNStatement :: (String, String, String) -> String
-solveRPNStatement (left, right, "+") = left ++ " + " ++ right
-solveRPNStatement (left, right, "-") = left ++ " - " ++ right
-solveRPNStatement (left, right, "*") = left ++ " * " ++ right
-solveRPNStatement (left, right, "/") = left ++ " / " ++ right
+solveRPNStatement (left, right, "+") = left ++ right ++ " + "
+solveRPNStatement (left, right, "-") = left ++ right ++ " - "
+solveRPNStatement (left, right, "*") = left ++ right ++ " * "
+solveRPNStatement (left, right, "/") = left ++ right ++ " / "
 solveRPNStatement (left, right, op)  = error ("Unknown operator: " ++ op)
 
 main = do
