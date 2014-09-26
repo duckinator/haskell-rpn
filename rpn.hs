@@ -1,4 +1,5 @@
 import Text.Read
+import Data.Maybe (maybe)
 
 data Thing = Operator String | Operand Float
 
@@ -13,12 +14,9 @@ thingify :: [String] -> [Thing]
 thingify = map thingify'
 
 thingify' :: String -> Thing
-thingify' str =
-    case x of
-      Just f  -> Operand  f
-      Nothing -> Operator str
+thingify' str = maybe (Operator str) Operand f
   where
-    x = readMaybe str :: Maybe Float
+    f = readMaybe str :: Maybe Float
 
 solveRPN' :: [Thing] -> [Thing]
 solveRPN' (x:y:z:xs) = solveRPN' $ solveRPNStatement x y z : xs
