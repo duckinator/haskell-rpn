@@ -44,7 +44,7 @@ solveRPNStatement' l r "/" = l / r
 solveRPNStatement' l r op  = error ("Unknown operator: " ++ op)
 
 main = do
-          print $ solveRPN "1 2 + 3 -"
-          print $ solveRPN "1 2 *"
-          print $ solveRPN "1 2 x"
+    print $ solveRPN "1 2 + 3 -"
+    print $ solveRPN "1 2 *"
+    print $ solveRPN "1 2 x"
 
