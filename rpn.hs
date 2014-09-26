@@ -28,9 +28,7 @@ thingify' x   = operand x
 
 solveRPN' :: [Thing] -> [Thing]
 solveRPN' (x:y:z:xs) = solveRPN' $ solveRPNStatement x y z : xs
-solveRPN' (x:y:[])   = [x, y]
-solveRPN' (x:[])     = [x]
-solveRPN' []         = []
+solveRPN' xs = xs
 
 solveRPNStatement :: Thing -> Thing -> Thing -> Thing
 solveRPNStatement (Operand l) (Operand r) (Operator op) = Operand $ solveRPNStatement' l r op
