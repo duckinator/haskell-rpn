@@ -6,15 +6,6 @@ instance Show Thing where
   show (Operator x) = x
   show (Operand x)  = show x
 
-str2float :: String -> Float
-str2float str = read str :: Float
-
-operator :: String -> Thing
-operator = Operator
-
-operand :: String -> Thing
-operand x = Operand $ str2float x
-
 solveRPN :: String -> String
 solveRPN = show . head . solveRPN' . thingify . words
 
@@ -22,11 +13,12 @@ thingify :: [String] -> [Thing]
 thingify = map thingify'
 
 thingify' :: String -> Thing
-thingify' "+" = operator "+"
-thingify' "-" = operator "-"
-thingify' "*" = operator "*"
-thingify' "/" = operator "/"
-thingify' x   = operand x
+thingify' str =
+    case x of
+      Just f  -> Operand  f
+      Nothing -> Operator str
+  where
+    x = readMaybe str :: Maybe Float
 
 solveRPN' :: [Thing] -> [Thing]
 solveRPN' (x:y:z:xs) = solveRPN' $ solveRPNStatement x y z : xs
